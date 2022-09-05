@@ -55,7 +55,7 @@ K8s-gatekeeper is an admission webhook for k8s, using [Casbin](/docs/overview) t
 
 Casbin is a powerful and efficient open-source access control library. It provides support for enforcing authorization based on various access control models. For more detail about Casbin, see [Overview](/docs/overview).
 
-Admission webhooks in K8s are HTTP callbacks that receive 'admission requests' and do something with them. In particular, K8s-gatekeeper is a special type of admission webhoook: 'ValidatingAdmissionWebhook', which can decide whether to accept or reject this admission request or not. As for admission requests, they are HTTP requests describing an operation on specified resources of K8s (for example, creating/deleting a deployment). For more about admission webhooks, see K8s official doc <https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks>
+Admission webhooks in K8s are HTTP callbacks that receive 'admission requests' and do something with them. In particular, K8s-gatekeeper is a special type of admission webhoook: 'ValidatingAdmissionWebhook', which can decide whether to accept or reject this admission request or not. As for admission requests, they are HTTP requests describing an operation on specified resources of K8s (for example, creating/deleting a deployment). For more about admission webhooks, see [K8s official doc](https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/#what-are-admission-webhooks).
 
 ### 1.2 An example illustrating how it works.
 
@@ -120,8 +120,8 @@ By creating an enforcer containg model and policy above, the previous admission 
 
 Three methods are provided for installing K8s-gatekeeper: External webhook, Internal webhook and helm.
 
-:::note title="Note"
-Note: these methods are only for user to try K8s-gatekeeper, and it is not secure. If you want to use it in productive environment, please make sure you read  [Chapter 5. Advanced setting](#5-advanced-settings) and make modifications accordingly when necessary before installation 
+:::caution
+these methods are only for user to try K8s-gatekeeper, and it is not secure. If you want to use it in productive environment, please make sure you read  [Chapter 5. Advanced setting](#5-advanced-settings) and make modifications accordingly when necessary before installation 
 :::
 
 ### 2.1 Internal webhook
@@ -134,8 +134,8 @@ docker build --target webhook -t k8s-gatekeeper .
 ```
 Then there will be a local image called 'k8s-gatekeeper:latest'.
 
-:::note title="Note"
-Note: if you are using minikube, please execute `eval $(minikube -p minikube docker-env)` before running docker build*
+:::info
+if you are using minikube, please execute `eval $(minikube -p minikube docker-env)` before running docker build*
 :::
 
 #### 2.1.2 Step 2: Set up services and deployments for K8s-gatekeeper
@@ -250,7 +250,7 @@ Name 'obj' is not mandatory, as long as the name is consistent with the name use
 ### 4.2 Matchers of Model
 You are supposed to use the ABAC feature of Casbin to write down your rule. However, the expression evaluator integrated in Casbin supports neither indexing in maps or arrays(slices), nor the expansion of array. Therefore K8s-gatekeeper provide various 'Casbin functions' as extension to impelement these features. If you still find that your demand cannot be fulfilled by these extensions, it is welcomed to start a issue, or pr directly.
 
-If you don't know what is casbin funtion, see [Function]</docs/function> for more information.
+If you don't know what is casbin funtion, see [Function](/docs/function) for more information.
 
 Here are the extension functions
 ### 4.2.1 Externsion functions
